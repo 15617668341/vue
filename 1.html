@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <script src="./js/vue.js"></script>
+
+    <title>Title</title>
+
+</head>
+<body>
+<div id="box">
+    <input type="text" ref="myref">
+
+    <child ref="mychild"></child>
+    <hr>
+    <button @click="handleButton">点我</button>
+
+
+</div>
+</body>
+<script>
+    Vue.component('child',{
+        template:`
+            <div>
+                <input type="text" v-model="mytext">
+                <hr>
+                我是子组件的input
+            </div>
+        `,
+        data(){
+            return{
+                mytext:''
+            }
+        },
+        methods:{
+            add(a){
+                console.log('我是子组件的add方法')
+                console.log(a)
+                return '返回了'
+            }
+        }
+
+
+
+    })
+    var vm=new Vue({
+        el: '#box',
+        data:{
+            name:'lili'
+
+        },
+        methods:{
+            // handle(a) {
+            //     this.name=a
+            // },
+            handleButton(){
+                console.log(this.$refs.mychild.name=this.name)
+
+                console.log(this.$refs.mychild.mytext)
+                console.log(this.$refs)
+
+                console.log(this.$refs.mychild.add(this.name))
+            }
+        }
+
+    })
+</script>
+</html>
